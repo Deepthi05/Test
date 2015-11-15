@@ -1,0 +1,73 @@
+__metaclass__ = type
+
+class Animal:
+    
+    __name = "no name"
+    __owner = "no owner"
+    
+    
+    def __init__(self, **kwargs):
+        self._attributes = kwargs
+        
+        
+    def set_attribute(self, key, value):
+        self._attributes[key] = value
+        
+    def get_attribute(self, key):
+        return self._attributes.get(key, None)
+        
+    def noise(self):
+        print "burrr"
+        
+    def move(self):
+        print "animal moves"
+        
+    def eat(self):
+        print "crunch,crunch"
+        
+        
+class Dog(Animal):
+    
+    def __init__(self, **kwargs):
+        super(Dog, self).__init__()
+        self._attributes = kwargs
+        
+    def noise(self):
+        print"bowe, bowe"
+        
+class Cat(Animal):
+    
+    def __init__(self, **kwargs):
+        super(Cat, self).__init__()
+        self._attributes = kwargs
+        
+    def noise(self):
+        print "purrr"
+        Animal.noise(self)
+        
+class Dat(Cat, Dog):
+    
+    def __init__(self, **kwargs):
+        super(Dat, self).__init__()
+        self._attributes = kwargs
+        
+    
+        
+def playwithanimal(Animal):
+    Animal.noise()
+    Animal.move()
+    Animal.eat()
+    print Animal.get_attribute('__name')
+    print Animal.get_attribute('__owner')
+    
+    
+def main():
+    james = Dog(__name = 'puppy', __owner = 'james')
+    jolly = Dat(__name='mousy', __owner = 'jolly')
+    playwithanimal(james)
+    playwithanimal(jolly)  
+      
+if __name__ == '__main__': main()
+    
+    
+        
